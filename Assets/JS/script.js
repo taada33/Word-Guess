@@ -4,11 +4,50 @@ bodyEl = document.querySelector('body');
 document.addEventListener('click',init);
 document.addEventListener('keydown',init);
 
+let guessword = new Array;
+let word = "celebration";
 
 function init(){
     let headerEl = document.querySelector("header");
     headerEl.setAttribute('style','display: none');
+
+    document.removeEventListener('click',init);
+    document.removeEventListener('keydown',init);
+    
+    for(let i = 0; i<word.length; i++){
+        guessword[i] = "_ ";
+    }
+
+    var listEl = document.createElement("ul");
+    document.body.appendChild(listEl);
+    for(let i=0; i<word.length; i++){
+        let liEl = document.createElement("li");
+        liEl.textContent = "_ ";
+        listEl.appendChild(liEl);
+    }
+    
+    document.addEventListener('keydown',guessinput)
 }
+
+function guessinput(event){
+    let keyPress = event.key;
+    console.log(keyPress);
+    if(word.includes(keyPress) && !guessword.includes(keyPress)){
+        for(let i = 0; i<word.length; i++){
+            if(keyPress === word[i]){
+                let guessLi = document.body.children[3].children[i];
+                // console.log(document.body.children[3]);
+                guessLi.textContent = keyPress;
+                // console.log("Correct!")
+            }  
+        }
+    }else if(word.includes(keyPress) && guessword.includes(keyPress)){
+        console.log("Already guessed!")
+    }else{
+        console.log("Incorrect!")
+    }
+}
+    
 
 
 
