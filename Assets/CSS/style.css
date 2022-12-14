@@ -1,0 +1,11 @@
+ul{
+    margin-top: 20%;
+    list-style: none;
+    text-align: center;
+    justify-content: center;
+}
+
+ul li{
+    display: inline;
+    font-size: 100px;
+}
